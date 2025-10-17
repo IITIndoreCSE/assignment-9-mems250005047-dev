@@ -1,40 +1,37 @@
 #include <iostream>
 #include <string>
-
 using namespace std;
 
-struct SalesRecord{
-string month;
-float amount;
-}
+struct SalesRecord {
+    string month;
+    float amount;
+};
 
-int main(){
-   SalesRecord salesrecord[12];
+int main() {
+    SalesRecord sales[12];
 
-cout << "Enter the sales record for each month:\n";
-    for (int i = 0; i < 12; i++) {
-        cout << "Month " << i + 1 << ":\n";
-        cout << "Enter month name: ";
-        cin >> records[i].month;
-        cout << "Enter sales amount: ";
-        cin >> records[i].amount;
+    for(int i = 0; i < 12; i++) {
+        cout << "Month " << (i+1) << " Name: ";
+        cin >> sales[i].month;
+        cout << "Sales Amount: ";
+        cin >> sales[i].amount;
     }
 
-string maxMonth, minMonth;
-    float maxAmount = -1.0, minAmount = 1e9;
-
-for (int i = 0; i < 12; i++) {
-        if (records[i].amount > maxAmount) {
-            maxAmount = records[i].amount;
-            maxMonth = records[i].month;
+    int maxIdx = 0, minIdx = 0;
+    for(int i = 1; i < 12; i++) {
+        if(sales[i].amount > sales[maxIdx].amount) {
+            maxIdx = i;
         }
-        if (records[i].amount < minAmount) {
-            minAmount = records[i].amount;
-            minMonth = records[i].month;
+        if(sales[i].amount < sales[minIdx].amount) {
+            minIdx = i;
         }
     }
- cout << "\nMonth with maximum sales: " << maxMonth << " with amount $" << maxAmount << endl;
-    cout << "Month with minimum sales: " << minMonth << " with amount $" << minAmount << endl;
+
+    cout << "Output: Month with maximum sales: "
+         << sales[maxIdx].month << " with amount " << sales[maxIdx].amount << endl;
+
+    cout << "Month with minimum sales: "
+         << sales[minIdx].month << " with amount " << sales[minIdx].amount << endl;
 
     return 0;
 }
